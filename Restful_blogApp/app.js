@@ -32,6 +32,21 @@ app.get("/blogs", function (req, res) {
     res.render("index", { blogs: blogs });
   });
 });
+//new
+app.get('/blogs/new', function (req, res) {
+  res.render("new");
+});
+//create
+app.post('/blogs', function (req, res) {
+  Blog.create(req.body.blog, function (err, newBlog) {
+    if (err) {
+      res.redirect('/blogs/new');
+    } else {
+      res.redirect('/');
+    }
+  });
+
+});
 
 app.listen(3000, function () {
   console.log("Listening");
