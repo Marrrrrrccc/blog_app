@@ -8,6 +8,10 @@ mongoose.connect("mongodb://localhost:27017/restful_blog_app", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+mongoose.set('useUnifiedTopology', true);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -80,6 +84,16 @@ app.put("/blogs/:id", function (req, res) {
     }
   });
 
+});
+//Delete
+app.delete("/blogs/:id", function (req, res) {
+  Blog.findByIdAndRemove(req.params.id, req.body.blog, function (err) {
+    if (err) {
+      res.redirect('/blogs');
+    } else {
+      res.redirect('/blogs');
+    }
+  });
 });
 app.listen(3000, function () {
   console.log("Listening");
