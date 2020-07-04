@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const methodOverride = require('method-override');
-const expressSantizer = require('express-sanitizer');
+const expressSanitizer = require('express-sanitizer');
 //app config
 mongoose.connect("mongodb://localhost:27017/restful_blog_app", {
   useNewUrlParser: true,
@@ -16,7 +16,7 @@ mongoose.set('useUnifiedTopology', true);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(expressSantizer());
+app.use(expressSanitizer());
 app.use(methodOverride("_method"));
 //Mongoose/Model config
 const blogSchema = mongoose.Schema({
