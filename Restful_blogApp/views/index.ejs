@@ -1,13 +1,39 @@
 <%- include ("partials/header") %>
-<h1>Index page</h1>
-<% blogs.forEach(function(blog){%>
-<div>
-  <h1><%=blog.name%></h1>
-  <img src="<%=blog.image%>" alt="" />
-  <span><%=blog.date.toDateString()%></span>
-  <p><%=blog.body.substring(0,100)%>...</p>
-  <a href="/blogs/<%=blog._id %> ">Read more</a>
-</div>
+<div class="ui main text container segment">
+  <div class="ui huge header">
+    Restful Blog app
+  </div>
+  <div class="ui attached top segment">
+    <div class="ui divided items">
+      <% blogs.forEach(function(blog){%>
+      <div class="item">
+        <div class="image">
+          <img src="<%=blog.image%>" alt="" />
+        </div>
+        <div class="content">
+          <a class="header" href="/blogs/<%=blog._id %>"><%=blog.name%></a>
+          <div class="meta">
+            <span><%=blog.date.toDateString()%></span>
+          </div>
+          <div class="description">
+            <p><%-blog.body.substring(0,100)%>...</p>
+          </div>
+          <div class="extra">
+            <a href="/blogs/<%=blog._id %> " class="ui floated button inverted blue">
+              Read more <i class="right chevron icon"></i>
+            </a>
+          </div>
+        </div>
 
-<%})%>
-<%- include ("partials/footer") %>
+
+
+
+
+      </div>
+      <%})%>
+    </div>
+  </div>
+
+
+
+  <%- include ("partials/footer") %>
